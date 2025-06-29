@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reputigo Estimate Template - Minimalist</title>
+    <!-- Google Font: Inter (as requested for "Relative 400" aesthetic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles for the Template */
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            -webkit-print-color-adjust: exact;
+            color: #333;
+        }
+
+        /* Container for the entire estimate document */
+        .rep-est-min-container {
+            width: 8.5in;
+            height: 11in;
+            margin: 0 auto;
+            padding: 0.75in;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+
+        /* Header Section */
+        .rep-est-min-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5in;
+        }
+
+        .rep-est-min-company-block h1 {
+            font-size: 24pt;
+            font-weight: 700;
+            margin-bottom: 5pt;
+            color: #1976d2; /* Primary color for company name */
+        }
+        .rep-est-min-company-block p {
+            margin: 0;
+            font-size: 10pt;
+            color: #555;
+        }
+
+        .rep-est-min-quote-title {
+            text-align: right;
+        }
+        .rep-est-min-quote-title h2 {
+            font-size: 28pt; /* Larger "Estimate" title */
+            font-weight: 700;
+            margin: 0 0 5pt 0;
+            color: #000;
+        }
+        .rep-est-min-quote-title p {
+            margin: 0;
+            font-size: 10pt;
+            color: #555;
+        }
+        .rep-est-min-quote-title span {
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Info Blocks */
+        .rep-est-min-info-blocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5in;
+            margin-bottom: 0.5in;
+        }
+        .rep-est-min-info-block {
+            padding-bottom: 10pt;
+        }
+        .rep-est-min-info-block strong {
+            font-weight: 600;
+            color: #000;
+            display: block;
+            margin-bottom: 5pt;
+        }
+        .rep-est-min-info-block p {
+            margin: 0;
+            font-size: 10pt;
+            color: #555;
+        }
+
+        /* Items Table */
+        .rep-est-min-items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5in;
+        }
+        .rep-est-min-items-table th,
+        .rep-est-min-items-table td {
+            padding: 8pt 0; /* Minimal padding */
+            text-align: left;
+            border-bottom: 1px solid #eee; /* Light bottom border */
+        }
+        .rep-est-min-items-table th {
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 9pt;
+            padding-bottom: 12pt;
+        }
+        .rep-est-min-items-table .rep-est-min-qty-col,
+        .rep-est-min-items-table .rep-est-min-unit-cost-col,
+        .rep-est-min-items-table .rep-est-min-total-col {
+            width: 15%;
+            text-align: right;
+        }
+        .rep-est-min-items-table .rep-est-min-description-col {
+            width: 40%;
+        }
+        .rep-est-min-items-table td {
+            font-size: 9.5pt;
+            color: #444;
+        }
+        .rep-est-min-items-table tbody tr:last-child td {
+            border-bottom: none; /* No border on last row */
+        }
+
+        /* Notes and Summary */
+        .rep-est-min-bottom-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 0.5in;
+            flex-grow: 1;
+            margin-top: auto;
+            align-items: end;
+        }
+        .rep-est-min-notes-block {
+            margin-bottom: 10pt;
+        }
+        .rep-est-min-notes-block strong {
+            display: block;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 5pt;
+        }
+        .rep-est-min-notes-content {
+            white-space: pre-wrap;
+            color: #555;
+            font-size: 9pt;
+            line-height: 1.5;
+        }
+
+        .rep-est-min-summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: auto;
+            text-align: right;
+        }
+        .rep-est-min-summary-table tr {
+            border-bottom: 1px solid #eee;
+        }
+        .rep-est-min-summary-table tr:last-child {
+            border-bottom: none;
+        }
+        .rep-est-min-summary-table td {
+            padding: 8pt 0;
+            font-size: 10pt;
+            color: #333;
+        }
+        .rep-est-min-summary-table .rep-est-min-label-col {
+            text-align: left;
+            font-weight: 600;
+        }
+        .rep-est-min-summary-table .rep-est-min-value-col {
+            text-align: right;
+            font-weight: 400;
+        }
+        .rep-est-min-summary-table .rep-est-min-tax-rate {
+            font-size: 8pt;
+            display: block;
+        }
+        .rep-est-min-summary-table tr.rep-est-min-total-row {
+            background-color: #f8f9fa;
+            border-top: 2px solid #1976d2;
+            border-bottom: none;
+        }
+        .rep-est-min-summary-table tr.rep-est-min-total-row td {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #000;
+            padding: 12pt 0;
+        }
+        .rep-est-min-summary-table .rep-est-min-subtotal-value {
+            color: #000;
+        }
+
+        /* Footer */
+        .rep-est-min-footer {
+            text-align: center;
+            font-size: 8pt;
+            color: #888;
+            padding-top: 15pt;
+            margin-top: 15pt;
+        }
+        .rep-est-min-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .rep-est-min-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="rep-est-min-container">
+        <!-- Header Section -->
+        <div class="rep-est-min-header">
+            <div class="rep-est-min-company-block">
+                <h1>{{yourCompanyName}}</h1>
+                <p>{{yourCompanyWebsite}}</p>
+                <p>{{yourCompanyAddress}}</p>
+                <p>{{yourCityStateZip}}</p>
+            </div>
+            <div class="rep-est-min-quote-title">
+                <h2>ESTIMATE</h2>
+                <p># <span>{{quoteNumber}}</span></p>
+            </div>
+        </div>
+
+        <!-- Info Blocks: Your Contact, Client, Dates -->
+        <div class="rep-est-min-info-blocks">
+            <div class="rep-est-min-info-block">
+                <strong>Your Contact Information</strong>
+                <p>{{yourPhoneNumber}}</p>
+                <p>{{yourEmailAddress}}</p>
+            </div>
+            <div class="rep-est-min-info-block" style="text-align: right;">
+                <strong>Date Issued:</strong> <p>{{quoteSentDate}}</p>
+                <strong>Valid Until:</strong> <p>{{quoteDueDate}}</p>
+            </div>
+            <div class="rep-est-min-info-block">
+                <strong>Client Information</strong>
+                <p><strong>{{clientCompanyName}}</strong></p>
+                <p>{{clientStreetAddress}}</p>
+                <p>{{clientCityStateZip}}</p>
+            </div>
+             <div class="rep-est-min-info-block">
+                <strong>Quote Subject</strong>
+                <p>{{quoteSubject}}</p>
+            </div>
+        </div>
+
+        <!-- Service/Product Items Table -->
+        <table class="rep-est-min-items-table">
+            <thead>
+                <tr>
+                    <th>Service/Product</th>
+                    <th class="rep-est-min-description-col">Description</th>
+                    <th class="rep-est-min-qty-col">Qty</th>
+                    <th class="rep-est-min-unit-cost-col">Unit Cost</th>
+                    <th class="rep-est-min-total-col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder: Loop through your service items here -->
+                <!-- Example Row: -->
+                <!--
+                <tr>
+                    <td>Initial Consultation</td>
+                    <td>On-site assessment of project scope</td>
+                    <td class="rep-est-min-qty-col">1</td>
+                    <td class="rep-est-min-unit-cost-col">$ 75.00</td>
+                    <td class="rep-est-min-total-col">$ 75.00</td>
+                </tr>
+                -->
+                <!-- Default placeholder rows -->
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-min-qty-col">&nbsp;</td><td class="rep-est-min-unit-cost-col">&nbsp;</td><td class="rep-est-min-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-min-qty-col">&nbsp;</td><td class="rep-est-min-unit-cost-col">&nbsp;</td><td class="rep-est-min-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-min-qty-col">&nbsp;</td><td class="rep-est-min-unit-cost-col">&nbsp;</td><td class="rep-est-min-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-min-qty-col">&nbsp;</td><td class="rep-est-min-unit-cost-col">&nbsp;</td><td class="rep-est-min-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-min-qty-col">&nbsp;</td><td class="rep-est-min-unit-cost-col">&nbsp;</td><td class="rep-est-min-total-col">$ 0.00</td></tr>
+            </tbody>
+        </table>
+
+        <!-- Notes and Summary Section -->
+        <div class="rep-est-min-bottom-section">
+            <div class="rep-est-min-notes-block">
+                <strong>Notes:</strong>
+                <div class="rep-est-min-notes-content">{{notesContent}}</div>
+            </div>
+            <table class="rep-est-min-summary-table">
+                <tbody>
+                    <tr>
+                        <td class="rep-est-min-label-col">Subtotal</td>
+                        <td class="rep-est-min-value-col rep-est-min-subtotal-value">{{subtotalAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rep-est-min-label-col">Discount</td>
+                        <td class="rep-est-min-value-col">{{discountAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rep-est-min-label-col">Tax Rate & Total</td>
+                        <td class="rep-est-min-value-col">
+                            <span class="rep-est-min-tax-rate">{{taxRate}}%</span>
+                            = {{taxAmount}}
+                        </td>
+                    </tr>
+                    <tr class="rep-est-min-total-row">
+                        <td class="rep-est-min-label-col">Total Estimate</td>
+                        <td class="rep-est-min-value-col">{{quoteTotalAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="rep-est-min-footer">
+            Estimate generated by <a href="https://reputigo.com" target="_blank">Reputigo</a>
+        </div>
+    </div>
+</body>
+</html>

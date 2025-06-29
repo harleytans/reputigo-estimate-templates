@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reputigo Estimate Template - Modern & Clean</title>
+    <!-- Google Font: Inter (as requested for "Relative 400" aesthetic) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles for the Template */
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400; /* Default weight */
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Light background for visual separation from window */
+            -webkit-print-color-adjust: exact; /* Ensure background colors print */
+            color: #333; /* Dark gray text */
+        }
+
+        /* Container for the entire estimate document */
+        .rep-est-container {
+            width: 8.5in; /* Standard US Letter width */
+            height: 11in; /* Standard US Letter height */
+            margin: 0 auto; /* Center on page */
+            padding: 0.75in; /* Padding around the content */
+            background-color: #ffffff; /* White background for the estimate itself */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual appeal */
+            box-sizing: border-box; /* Include padding in dimensions */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Pushes footer to bottom */
+            font-size: 10pt; /* Base font size for readability */
+            line-height: 1.4;
+        }
+
+        /* Header Section - Top two-column layout */
+        .rep-est-header-section {
+            display: grid;
+            grid-template-columns: 3fr 2fr; /* Company info wider than contact info */
+            gap: 0.5in; /* Space between columns */
+            margin-bottom: 0.5in;
+        }
+
+        .rep-est-company-info h1 {
+            font-size: 20pt; /* Larger font for company name */
+            font-weight: 700;
+            margin-bottom: 5pt;
+            color: #000;
+        }
+
+        .rep-est-company-info p {
+            margin: 0;
+            color: #555;
+            font-size: 9pt;
+        }
+
+        .rep-est-contact-info {
+            text-align: right;
+            font-size: 9pt;
+            color: #555;
+        }
+        .rep-est-contact-info p {
+            margin: 0;
+        }
+        .rep-est-contact-info strong {
+            display: block; /* Ensures each contact detail gets its own line */
+        }
+
+        /* Recipient and Quote Details Section */
+        .rep-est-details-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5in;
+            margin-bottom: 0.5in;
+        }
+
+        .rep-est-recipient-block,
+        .rep-est-quote-subject-block {
+            margin-bottom: 10pt;
+        }
+
+        .rep-est-details-label {
+            font-weight: 600; /* Bold for labels like Recipient, Quote Subject */
+            color: #000;
+        }
+        .rep-est-details-value {
+            margin-top: 2pt;
+            color: #555;
+        }
+
+        .rep-est-quote-main-details {
+            text-align: right;
+        }
+        .rep-est-quote-main-details h2 {
+            font-size: 24pt; /* "Quote" title */
+            font-weight: 700;
+            margin: 0 0 5pt 0;
+            color: #000;
+        }
+        .rep-est-quote-main-details p {
+            margin: 0 0 2pt 0;
+            font-size: 9pt;
+            color: #555;
+        }
+        .rep-est-quote-main-details span {
+             font-weight: 600;
+             color: #000;
+        }
+
+        /* Service/Product Table */
+        .rep-est-items-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.5in;
+        }
+
+        .rep-est-items-table th,
+        .rep-est-items-table td {
+            border: 1px solid #e0e0e0; /* Light gray border */
+            padding: 8pt 10pt;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .rep-est-items-table th {
+            background-color: #f8f9fa; /* Light gray header background */
+            font-weight: 600;
+            color: #333;
+            text-transform: uppercase;
+            font-size: 9pt;
+        }
+
+        .rep-est-items-table .rep-est-qty-col,
+        .rep-est-items-table .rep-est-unit-cost-col,
+        .rep-est-items-table .rep-est-total-col {
+            width: 15%; /* Adjust column widths */
+            text-align: right;
+        }
+
+        .rep-est-items-table .rep-est-description-col {
+            width: 40%;
+        }
+
+        .rep-est-items-table td {
+            font-size: 9.5pt;
+            color: #444;
+        }
+
+        /* Summary and Notes Section */
+        .rep-est-bottom-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Notes wider than summary */
+            gap: 0.5in;
+            flex-grow: 1; /* Allows this section to take available space */
+            margin-top: auto; /* Pushes it towards the bottom if content is short */
+            align-items: end; /* Aligns content to the bottom of its grid area */
+        }
+
+        .rep-est-notes-block {
+            margin-bottom: 10pt; /* Space between notes label and content */
+        }
+        .rep-est-notes-block .rep-est-details-label {
+            margin-bottom: 5pt;
+        }
+        .rep-est-notes-block .rep-est-notes-content {
+            border: 1px solid #e0e0e0; /* Border around notes area */
+            padding: 10pt;
+            min-height: 1.5in; /* Minimum height for notes box */
+            white-space: pre-wrap; /* Preserves whitespace and line breaks */
+            color: #555;
+            font-size: 9pt;
+        }
+
+        .rep-est-summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-left: auto; /* Aligns table to the right within its grid column */
+            text-align: right;
+            border-top: 1px solid #e0e0e0; /* Top border for summary table */
+        }
+
+        .rep-est-summary-table tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .rep-est-summary-table tr:last-child {
+            border-bottom: none; /* No border for the very last row */
+        }
+
+        .rep-est-summary-table td {
+            padding: 8pt 10pt;
+            font-size: 10pt;
+            color: #333;
+        }
+
+        .rep-est-summary-table .rep-est-label-col {
+            text-align: left; /* Label column text aligns left */
+            font-weight: 600;
+        }
+        .rep-est-summary-table .rep-est-value-col {
+            text-align: right; /* Value column text aligns right */
+            font-weight: 400; /* Default weight for values */
+        }
+
+        .rep-est-summary-table .rep-est-tax-rate {
+            font-size: 8pt;
+            display: block; /* To make % appear on new line */
+        }
+
+        .rep-est-summary-table tr.rep-est-total-row {
+            background-color: #f8f9fa; /* Light background for total row */
+            border-top: 2px solid #1976d2; /* Primary color line above total */
+            border-bottom: none;
+        }
+        .rep-est-summary-table tr.rep-est-total-row td {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #000;
+            padding: 12pt 10pt;
+        }
+
+        /* Specific style for subtotal text color (modern theme) */
+        .rep-est-summary-table .rep-est-subtotal-value {
+            color: #000;
+        }
+
+        /* Footer */
+        .rep-est-footer {
+            text-align: center;
+            font-size: 8pt;
+            color: #888;
+            padding-top: 15pt;
+            margin-top: 15pt; /* Ensure separation from content above */
+        }
+        .rep-est-footer a {
+            color: #1976d2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .rep-est-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="rep-est-container">
+        <!-- Header Section: Company Info & Your Contact Info -->
+        <div class="rep-est-header-section">
+            <div class="rep-est-company-info">
+                <h1>{{yourCompanyName}}</h1>
+                <p>{{yourCompanyWebsite}}</p>
+            </div>
+            <div class="rep-est-contact-info">
+                <p><strong>{{yourPhoneNumber}}</strong></p>
+                <p><strong>{{yourEmailAddress}}</strong></p>
+                <p><strong>{{yourCompanyAddress}}</strong></p>
+                <p>{{yourCityStateZip}}</p>
+            </div>
+        </div>
+
+        <!-- Recipient & Quote Details Section -->
+        <div class="rep-est-details-section">
+            <div>
+                <div class="rep-est-recipient-block">
+                    <div class="rep-est-details-label">Recipient</div>
+                    <div class="rep-est-details-value">
+                        <strong>{{clientCompanyName}}</strong><br>
+                        {{clientStreetAddress}}<br>
+                        {{clientCityStateZip}}
+                    </div>
+                </div>
+                <div class="rep-est-quote-subject-block">
+                    <div class="rep-est-details-label">Quote Subject</div>
+                    <div class="rep-est-details-value">{{quoteSubject}}</div>
+                </div>
+            </div>
+            <div class="rep-est-quote-main-details">
+                <h2>Quote</h2>
+                <p>Quote Number: <span>{{quoteNumber}}</span></p>
+                <p>Quote Sent: <span>{{quoteSentDate}}</span></p>
+                <p>Date Due: <span>{{quoteDueDate}}</span></p>
+            </div>
+        </div>
+
+        <!-- Service/Product Items Table -->
+        <table class="rep-est-items-table">
+            <thead>
+                <tr>
+                    <th>Service/Product</th>
+                    <th class="rep-est-description-col">Description</th>
+                    <th class="rep-est-qty-col">Qty</th>
+                    <th class="rep-est-unit-cost-col">Unit Cost</th>
+                    <th class="rep-est-total-col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Placeholder: Loop through your service items here -->
+                <!-- Example Row: -->
+                <!--
+                <tr>
+                    <td>Service Call Fee</td>
+                    <td>Diagnostic and trip charge</td>
+                    <td class="rep-est-qty-col">1</td>
+                    <td class="rep-est-unit-cost-col">$ 99.00</td>
+                    <td class="rep-est-total-col">$ 99.00</td>
+                </tr>
+                -->
+                <!-- Default placeholder rows -->
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-qty-col">&nbsp;</td><td class="rep-est-unit-cost-col">&nbsp;</td><td class="rep-est-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-qty-col">&nbsp;</td><td class="rep-est-unit-cost-col">&nbsp;</td><td class="rep-est-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-qty-col">&nbsp;</td><td class="rep-est-unit-cost-col">&nbsp;</td><td class="rep-est-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-qty-col">&nbsp;</td><td class="rep-est-unit-cost-col">&nbsp;</td><td class="rep-est-total-col">$ 0.00</td></tr>
+                <tr><td>&nbsp;</td><td>&nbsp;</td><td class="rep-est-qty-col">&nbsp;</td><td class="rep-est-unit-cost-col">&nbsp;</td><td class="rep-est-total-col">$ 0.00</td></tr>
+            </tbody>
+        </table>
+
+        <!-- Notes and Summary Section -->
+        <div class="rep-est-bottom-section">
+            <div class="rep-est-notes-block">
+                <div class="rep-est-details-label">Notes:</div>
+                <div class="rep-est-notes-content">{{notesContent}}</div>
+            </div>
+            <table class="rep-est-summary-table">
+                <tbody>
+                    <tr>
+                        <td class="rep-est-label-col">Subtotal</td>
+                        <td class="rep-est-value-col rep-est-subtotal-value">{{subtotalAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rep-est-label-col">Discount</td>
+                        <td class="rep-est-value-col">{{discountAmount}}</td>
+                    </tr>
+                    <tr>
+                        <td class="rep-est-label-col">Tax Rate & Total</td>
+                        <td class="rep-est-value-col">
+                            <span class="rep-est-tax-rate">{{taxRate}}%</span>
+                            = {{taxAmount}}
+                        </td>
+                    </tr>
+                    <tr class="rep-est-total-row">
+                        <td class="rep-est-label-col">Quote Total</td>
+                        <td class="rep-est-value-col">{{quoteTotalAmount}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="rep-est-footer">
+            Quote provided by <a href="https://reputigo.com" target="_blank">Reputigo</a>
+        </div>
+    </div>
+</body>
+</html>
